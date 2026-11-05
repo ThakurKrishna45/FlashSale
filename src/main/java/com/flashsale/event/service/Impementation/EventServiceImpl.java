@@ -25,7 +25,7 @@ public class EventServiceImpl implements EventService {
     @Override
     @Transactional
     public EventResponseDto createEvent(EventRequestDto event) {
-        Event entity = eventMapper.toEntity(event);
+        Event entity = eventMapper.toEvent(event);
         Event savedEntity = eventRepository.save(entity);
         return eventMapper.toResponseDto(savedEntity);
     }
@@ -62,7 +62,7 @@ public class EventServiceImpl implements EventService {
                                 "Event not found: " + id
                         ));
 
-        eventMapper.updateEntity(event, existingEvent);
+        eventMapper.updateEvent(event, existingEvent);
 
     }
 }

@@ -13,14 +13,14 @@ public interface EventMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "ticketTypes", ignore = true)
-    Event toEntity(EventRequestDto dto);
+    Event toEvent(EventRequestDto dto);
 
     EventResponseDto toResponseDto(Event event);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "ticketTypes", ignore = true)
-    void updateEntity(
+    void updateEvent(
             EventRequestDto dto,
             @MappingTarget Event event
     );
