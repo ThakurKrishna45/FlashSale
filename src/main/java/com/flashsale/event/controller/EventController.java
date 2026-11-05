@@ -3,6 +3,7 @@ package com.flashsale.event.controller;
 import com.flashsale.event.entity.dto.EventRequestDto;
 import com.flashsale.event.entity.dto.EventResponseDto;
 import com.flashsale.event.service.EventService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class EventController {
     private final EventService eventService;
 
     @PostMapping()
-    public ResponseEntity<EventResponseDto> createEvent(@RequestBody EventRequestDto event){
+    public ResponseEntity<EventResponseDto> createEvent(@Valid @RequestBody EventRequestDto event){
         EventResponseDto event1 = eventService.createEvent(event);
         return ResponseEntity.status(HttpStatus.CREATED).body(event1);
     }
@@ -36,7 +37,7 @@ public class EventController {
     }
 
     @PutMapping("/{uuid}")
-    public ResponseEntity<Void> updateEvent(@RequestBody EventRequestDto event, @PathVariable UUID uuid) {
+    public ResponseEntity<Void> updateEvent(@Valid @RequestBody EventRequestDto event, @PathVariable UUID uuid) {
         eventService.updateEvent(event, uuid);
         return ResponseEntity.noContent().build();
     }

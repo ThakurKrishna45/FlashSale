@@ -3,6 +3,7 @@ package com.flashsale.event.controller;
 import com.flashsale.event.entity.dto.TicketTypeRequestDto;
 import com.flashsale.event.entity.dto.TicketTypeResponseDto;
 import com.flashsale.event.service.TicketTypeService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class TicketTypeController {
     final private TicketTypeService ticketTypeService;
 
     @PostMapping("/{eventId}")
-    public ResponseEntity<TicketTypeResponseDto> addTicketType(@PathVariable UUID eventId, @RequestBody TicketTypeRequestDto ticket){
+    public ResponseEntity<TicketTypeResponseDto> addTicketType(@PathVariable UUID eventId,@Valid @RequestBody TicketTypeRequestDto ticket){
         TicketTypeResponseDto ticketTypeResponseDto = ticketTypeService.addTicketType(eventId, ticket);
         return ResponseEntity.status(HttpStatus.CREATED).body(ticketTypeResponseDto);
     }
@@ -37,7 +38,7 @@ public class TicketTypeController {
 
     @PutMapping("/{ticketTypeId}")
     public ResponseEntity<Void> updateTicketType(@PathVariable UUID ticketTypeId,
-                                                 @RequestBody TicketTypeRequestDto ticket){
+                                                @Valid @RequestBody TicketTypeRequestDto ticket){
         ticketTypeService.updateTicketType(ticketTypeId,ticket);
         return ResponseEntity.noContent().build();
     }
