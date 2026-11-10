@@ -24,7 +24,7 @@ public class TicketTypeController {
         return ResponseEntity.status(HttpStatus.CREATED).body(ticketTypeResponseDto);
     }
 
-    @GetMapping("/{eventId}")
+    @GetMapping("event/{eventId}")
     public ResponseEntity<List<TicketTypeResponseDto>> getAllTicketsOfEvent(@PathVariable UUID eventId){
         List<TicketTypeResponseDto> ticketTypesByEvent = ticketTypeService.getTicketTypesByEvent(eventId);
         return ResponseEntity.ok(ticketTypesByEvent);
